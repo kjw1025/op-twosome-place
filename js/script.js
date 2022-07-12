@@ -15,7 +15,7 @@ window.onload = function () {
   let allmenuBt = $('.allmenu-bt');
 
 
-  // 메뉴 오픈 기능
+  // 메인메뉴 오픈 기능
   header.mouseenter(function () {
 
     header.addClass('header-open');
@@ -26,7 +26,7 @@ window.onload = function () {
     
   });
 
-  // 메뉴 닫기 기능
+  // 메인메뉴 닫기 기능
   header.mouseleave(function () {
 
     header.removeClass('header-open');
@@ -51,6 +51,61 @@ window.onload = function () {
   // allmenuDepth1_li_a.mouseleave(function(){
   //   allmenuDepth2.css('visibility', 'hidden');
   // });
+
+
+  // allmenu 기능
+  
+  let closeBt = $('.allmenu-close-bt');
+  let allmenuWrap = $('.allmenu-wrap');
+
+  // all menu 오픈기능
+  allmenuBt.click(function(){
+    allmenuWrap.addClass('allmenu-wrap-open');
+  });
+
+  // all menu 닫기기능
+  closeBt.click(function(){
+    allmenuWrap.removeClass('allmenu-wrap-open');
+  });
+
+
+
+  //  visual-slide 슬라이드
+  let sw_visual = new Swiper('.sw-visual', {
+    loop: true,
+    speed: 1000,
+    autoplay: {
+      delay: 1000,
+      disableOnInteraction: false,
+    },
+
+    // pg
+    pagination: {
+      el: ".swiper-pagination",
+      type: "fraction",
+    },
+    // nav
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 };
 
