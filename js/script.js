@@ -92,8 +92,17 @@ window.onload = function () {
   });
 
 
+  // // gotobox
 
+  // let goToBox_A = $('.gotobox > a');
+  // // let goToBox_A_Before = $('.gotobox > a::before');
 
+  // goToBox_A.mouseenter(function(){
+  //   $(this).attr('width', 240);
+  // });
+  // goToBox_A.mouseleave(function(){
+  //   $(this).attr('width', 0);
+  // });
 
 
 

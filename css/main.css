@@ -27,6 +27,10 @@ html {
   font-size: 16px;
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   font-family: "Noto Sans KR", sans-serif;
   font-size: 18px;
@@ -44,21 +48,66 @@ body {
   clear: both;
 }
 
-.inner {
+section {
   position: relative;
   display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+.inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
   width: 1312px;
-  margin: 0 auto;
   padding: 0 48px;
+}
+
+.inner h4 {
+  position: relative;
+  display: block;
+  font-family: "Mark Pro";
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #000;
 }
 
 .main-title {
   position: relative;
   display: inline-block;
+  font-family: "Mark Pro";
   font-size: 96px;
   font-weight: 800;
   line-height: 1;
   color: #000;
+}
+
+.main-title::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #d50037;
+  margin: 0 0 0 16px;
+}
+
+.main-subtxt {
+  position: relative;
+  display: block;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000;
+}
+
+.main-basictxt {
+  position: relative;
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  color: #534d49;
 }
 
 
@@ -68,8 +117,8 @@ body {
   position: relative;
   display: block;
   background-color: rgb(211, 211, 211);
-  height: 937px;
 }
+
 
 /* 개별영역 */
 
@@ -260,7 +309,6 @@ h1 {
   left: 100%;
   display: block;
   width: 100%;
-  /* height: 937px; */
   height: 100vh;
   background-color: #222;
   z-index: 9999;
@@ -471,8 +519,8 @@ h1 {
 .pag-1 {
   position: relative;
   display: block;
-  width: 100%;
-  height: 937px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .swiper-container {
@@ -541,8 +589,132 @@ h1 {
   font-weight: 600;
   color: #999;
 }
+
 .swiper-pagination-current {
   color: #fff;
 }
 
 /* /// ===== pag 1 ===== */
+
+
+/*  ===== pag 2 ===== */
+/* /// ===== pag 2 ===== */
+
+
+
+/*  ===== pag 3 ===== */
+.pag-3 {
+  background: url('../images/pag-3.bg.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.pag3-maintitle {
+  font-family: "Noto Sans KR";
+}
+
+.pag3-mainh4 {
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
+.pag3-mainsubtxt {
+  margin-bottom: 16px;
+}
+
+.pag3-main-basictxt {
+  width: 42%;
+}
+
+/* /// ===== pag 3 ===== */
+
+
+
+/*  ===== pag 4 ===== */
+/* /// ===== pag 4 ===== */
+
+
+
+/*  ===== pag 5 ===== */
+.pag-5 {
+  background-color: beige;
+}
+
+.pag-5 .inner {
+  text-align: center;
+}
+
+.pag-5 .pag5-mainh4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 32px 0;
+}
+
+.pag-5 .pag5-main-basictxt {
+  color: #333;
+}
+
+.gotobox {
+  position: relative;
+  display: block;
+  margin-top: 48px;
+}
+
+.gotobox a {
+  position: relative;
+  display: inline-block;
+  width: 240px;
+  height: 65px;
+  padding: 0 24px;
+  text-align: left;
+  border: 2px solid #000;
+  background-color: #fff;
+}
+
+.gotobox a:first-child {
+  margin-right: 16px;
+}
+
+.gotobox a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+
+.gotobox a:hover span {
+  color: #fff;
+}
+.gotobox a:hover span::after {
+  background: url('../images/ico_arrow_right_white.png') no-repeat center;
+}
+
+.gotobox a span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 65px;
+  white-space: nowrap;
+  transition: all 0.4s;
+}
+
+.gotobox a span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url('../images/ico_arrow_right_black.png') no-repeat center;
+  background-size: cover;
+}
+
+/* /// ===== pag 5 ===== */

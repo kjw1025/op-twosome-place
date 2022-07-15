@@ -1,0 +1,50 @@
+
+@font-face {
+  font-family: "Mark Pro";
+  font-weight: 100;
+  font-style: normal;
+  src: url("../fonts/MARKPROEXTRALIGHT.woff") format("woff")
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  font-weight: 300;
+  font-style: normal;
+  src: url("../fonts/MARKPROLIGHT.woff") format("woff")
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/MARKPROBOOK.woff") format("woff")
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../fonts/MARKPROBOLD.woff") format("woff")
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../fonts/MARKPROHEAVY.woff") format("woff")
+}
+
+@font-face {
+  font-family: "Mark Pro";
+  font-weight: 900;
+  font-style: normal;
+  src: url("../fonts/MARKPROBLACK.woff") format("woff")
+}
+
+@font-face {
+  font-family: "iconset";
+  src: url("../fonts/iconset.ttf?xw8pgq") format("truetype"), url("../fonts/iconset.woff?xw8pgq") format("woff"), url("../fonts/iconset.svg?xw8pgq#iconset") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block
+}
