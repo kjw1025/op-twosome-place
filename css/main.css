@@ -688,6 +688,7 @@ h1 {
 .gotobox a:hover span {
   color: #fff;
 }
+
 .gotobox a:hover span::after {
   background: url('../images/ico_arrow_right_white.png') no-repeat center;
 }
@@ -718,3 +719,48 @@ h1 {
 }
 
 /* /// ===== pag 5 ===== */
+
+
+
+
+/*  ===== pag 6 ===== */
+.pag-6 {
+  background-color: #fff;
+}
+.navbt {
+  position: relative;
+  display: block;
+  margin: 48px 0 80px;
+}
+.navbt a {
+  position: relative;
+  display: inline-block;
+  height: 34px;
+  margin: 0 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+.navbt a:first-child {
+  margin-left: 0;
+}
+.pag6-bgimg {
+  position: relative;
+  display: block;
+  width: 320px;
+  height: 203px;
+  background: url('../images/main_news_illust.svg') no-repeat center;
+  background-size: cover;
+}
+
+/* /// ===== pag 6 ===== */
+
+
+
+/*  ===== pag 7 ===== */
+.footer {
+  height: 526px;
+  background-color: #222;
+}
+
+/* /// ===== pag 7 ===== */
