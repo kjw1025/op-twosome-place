@@ -65,7 +65,7 @@ section {
   padding: 0 48px;
 }
 
-.inner h4 {
+h4 {
   position: relative;
   display: block;
   font-family: "Mark Pro";
@@ -598,6 +598,71 @@ h1 {
 
 
 /*  ===== pag 2 ===== */
+.pag-2 {
+  position: relative;
+}
+
+.pag-2-txtbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.pag-2-txtbox a {
+  margin-top: 80px;
+}
+
+.pag2-mainsubtxt {
+  position: relative;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.pag2-mainh4 {
+  display: inline-block;
+  border-bottom: 3px solid #000;
+  line-height: 1;
+}
+
+/* swiper */
+.sw-pag2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  /* width: 1000px; */
+  height: 500px;
+  background-color: #888;
+}
+
+.sw-pag2-slide-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.sw-pag2 .swiper-slide .sw-pag2-slideA {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 180px;
+  height: 180px;
+  background-color: blanchedalmond;
+  transition: all 0.5s;
+}
+
+.sw-pag2 .swiper-slide-active .sw-pag2-slideA {
+  width: 100%;
+  height: 100%;
+}
+
+
 /* /// ===== pag 2 ===== */
 
 
@@ -727,11 +792,13 @@ h1 {
 .pag-6 {
   background-color: #fff;
 }
+
 .navbt {
   position: relative;
   display: block;
   margin: 48px 0 80px;
 }
+
 .navbt a {
   position: relative;
   display: inline-block;
@@ -741,9 +808,11 @@ h1 {
   font-weight: 600;
   color: #000;
 }
+
 .navbt a:first-child {
   margin-left: 0;
 }
+
 .pag6-bgimg {
   position: relative;
   display: block;
