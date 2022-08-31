@@ -73,40 +73,49 @@ window.onload = function () {
     },
     // nav
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".sw-visual-next",
+      prevEl: ".sw-visual-prev",
     },
   });
+
+
 
   // pag2 slide
 
   let sw_pag2 = new Swiper('.sw-pag2', {
-    // loop: true,
-    slidesPerView: 4,
+    loop: true,
     spaceBetween: 30,
+    centeredSlides: true,
+
+    // nav
+    navigation: {
+      nextEl: ".sw-pag2-next",
+      prevEl: ".sw-pag2-prev",
+    },
+
   });
 
 
 
   // 강제 swiper-slide 크기 조정
-  let pag2A = $('.sw-pag2-slideA');
-  let pag2A_ba = $('.sw-pag2').find('.swiper-slide');
-  let pag2A_active = $('.sw-pag2').find('.swiper-slide-active');
+  // let pag2A = $('.sw-pag2-slideA');
+  // let pag2A_ba = $('.sw-pag2').find('.swiper-slide');
+  // let pag2A_active = $('.sw-pag2').find('.swiper-slide-active');
 
-  console.log(pag2A_ba);
-  console.log(pag2A_active);
+  // console.log(pag2A_ba);
+  // console.log(pag2A_active);
 
-  function myfnfn1(el) {
-    el.css('width', '180px');
-    console.log('1');
-  }
+  // function myfnfn1(el) {
+  //   el.css('width', '176px');
+  //   console.log('1');
+  // }
 
-  function myfnfn2(el) {
-    el.css('width', '500px');
-    console.log('2');
-  }
-  myfnfn1(pag2A_ba);
-  myfnfn2(pag2A_active);
+  // function myfnfn2(el) {
+  //   el.css('width', '488px');
+  //   console.log('2');
+  // }
+  // myfnfn1(pag2A_ba);
+  // myfnfn2(pag2A_active);
 
 
   // 데이터 
