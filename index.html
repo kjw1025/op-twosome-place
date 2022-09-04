@@ -41,6 +41,8 @@
   <link rel="stylesheet" href="js/swiper/swiper.min.css">
   <script src="js/swiper/swiper.min.js"></script>
 
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <!-- 사용자 지정 -->
   <script src="js/script.js"></script>
@@ -301,40 +303,118 @@
 
       </div>
 
-      <div class="swiper-container sw-pag2">
-        <div class="swiper-wrapper">
+      <div class="pag2-swiper-part">
 
-          <div class="swiper-slide">
-            <div class="sw-pag2-slide-wrap">
-              <a href="#" class="sw-pag2-slideA">스페니쉬</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="sw-pag2-slide-wrap">
-              <a href="#" class="sw-pag2-slideA">롱블랙</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="sw-pag2-slide-wrap">
-              <a href="#" class="sw-pag2-slideA">허니레몬티</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="sw-pag2-slide-wrap">
-              <a href="#" class="sw-pag2-slideA">스피치</a>
-            </div>
-          </div>
+        <!-- main -->
+        <div class="swiper-container sw-pag2-main">
+          <div id="pag2-swMain" class="swiper-wrapper">
 
-          
+            <!-- <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스페니쉬</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">롱블랙</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">허니레몬티</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스피치</a>
+              </div>
+            </div>
 
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스페니쉬</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">롱블랙</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">허니레몬티</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스피치</a>
+              </div>
+            </div> -->
+
+          </div>
         </div>
 
-        <div class="base_sw-control sw-pag2-contorl">
-          <div class="swiper-button-next sw-pag2-next"></div>
-          <div class="swiper-button-prev sw-pag2-prev"></div>
+        <!-- sub -->
+        <div class="swiper-container sw-pag2-sub">
+          <div id="pag2-swSub" class="swiper-wrapper">
+
+
+            <!-- <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">롱블랙</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">허니레몬티</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스피치</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스페니쉬</a>
+              </div>
+            </div>
+            
+
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">롱블랙</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">허니레몬티</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스피치</a>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA">스페니쉬</a>
+              </div>
+            </div> -->
+
+          </div>
         </div>
+
+
+        
 
       </div>
+
+      <div class="base_sw-control sw-pag2-contorl">
+        <div class="swiper-button-next sw-pag2-next"></div>
+        <div class="swiper-button-prev sw-pag2-prev"></div>
+      </div>
+
 
     </section>
     <!-- /// pag 2 -->
@@ -390,12 +470,74 @@
     <!-- pag 6 -->
     <section class="pag-6">
       <div class="inner">
+
         <h2 class="main-title">NEWS<br>&NOTICE</h2>
+
         <div class="navbt">
           <a href="#">보도자료</a>
           <a href="#">공지사항</a>
         </div>
+
         <div class="pag6-bgimg"></div>
+
+
+
+        <!-- swiper -->
+        <div class="swiper-container sw-pag6">
+          <div class="swiper-wrapper">
+
+            <!-- 보도자료 -->
+            <div class="swiper-slide">
+              <div class="news-wrap">
+
+                <div class="news-li">
+                  <p>등록된 게시물이 없습니다.</p>
+                </div>
+            
+
+              </div>
+            </div>
+
+            <!-- 공지사항 -->
+            <div class="swiper-slide">
+              <div class="notice-wrap">
+
+                <ul>
+
+                  <li>
+                    <a href="#" class="txt-container">
+                      <em>공지사항</em>
+                      <strong>위치기반서비스 이용약관 개정 안내</strong>
+                      <span>2022-05-26</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="txt-container">
+                      <em>공지사항</em>
+                      <strong>개인정보처리방침 개정 안내</strong>
+                      <span>2022-04-15</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="txt-container">
+                      <em>공지사항</em>
+                      <strong>제 4기 투썸플레이스 주식회사 결산공고</strong>
+                      <span>2022-03-31</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
       </div>
     </section>
     <!-- /// pag 6 -->

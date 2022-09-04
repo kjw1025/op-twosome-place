@@ -7,6 +7,84 @@ $(document).ready(function () {
 
 window.onload = function () {
 
+  axios
+  // main ==============
+    .get("data/mainslide.json")
+    .then(function (result) {
+
+
+      console.log("data : ", result.data);
+
+      let mainData_coffee = result.data.coffee
+
+      console.log(mainData_coffee);
+
+
+      let tempHtml = '';
+      for (i = 0; i < mainData_coffee.length; i++) {
+
+        temp = `
+          <div class="swiper-slide">
+            <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA" style="background: url('images/${mainData_coffee[i].link}') no-repeat center;  background-size: cover;">${mainData_coffee[i].coffee_name}</a>
+            </div>
+          </div>
+        `;
+
+        tempHtml += temp
+
+      }
+
+
+
+      document.getElementById("pag2-swMain").innerHTML = tempHtml
+
+    })
+    .catch((err) => {
+      console.log("에러 발생 :", err)
+    });
+
+    axios
+    // sub ==============
+    .get("data/subslide.json")
+    .then(function (result) {
+
+      console.log("data : ", result.data);
+
+      let subata_coffee = result.data.coffee
+
+      console.log(subata_coffee);
+
+
+      let tempHtml = '';
+      for (i = 0; i < subata_coffee.length; i++) {
+
+        temp = `
+          <div class="swiper-slide">
+            <div class="sw-pag2-slide-wrap">
+                <a href="#" class="sw-pag2-slideA" style="background: url('images/${subata_coffee[i].link}') no-repeat center;  background-size: cover;">${subata_coffee[i].coffee_name}</a>
+            </div>
+          </div>
+        `;
+
+        tempHtml += temp
+
+      }
+
+
+
+      document.getElementById("pag2-swSub").innerHTML = tempHtml
+
+    })
+    .catch((err) => {
+      console.log("에러 발생 :", err)
+    });
+
+
+
+
+  console.log(axios);
+
 
 
   let header = $('.header');
@@ -68,7 +146,7 @@ window.onload = function () {
 
     // pg
     pagination: {
-      el: ".swiper-pagination",
+      el: ".sw-visual-pg",
       type: "fraction",
     },
     // nav
@@ -82,10 +160,37 @@ window.onload = function () {
 
   // pag2 slide
 
-  let sw_pag2 = new Swiper('.sw-pag2', {
-    loop: true,
+
+  // sub 슬라이더
+  let sw_pag2_sub = new Swiper('.sw-pag2-sub', {
+    // loop: true,
+    slidesPerView: 3,
     spaceBetween: 30,
-    centeredSlides: true,
+    observer: true,
+    observeParents: true,
+    allowTouchMove: false,
+    // watchSlidesProgress: true,
+
+    // nav
+    navigation: {
+      nextEl: ".sw-pag2-next",
+      prevEl: ".sw-pag2-prev",
+    },
+
+  });
+
+  // main 슬라이더
+  let sw_pag2_main = new Swiper('.sw-pag2-main', {
+    // loop: true,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    observer: true,
+    observeParents: true,
+    allowTouchMove: false,
+
+    thumbs: {
+      swiper: sw_pag2_sub
+    },
 
     // nav
     navigation: {
@@ -97,49 +202,16 @@ window.onload = function () {
 
 
 
-  // 강제 swiper-slide 크기 조정
-  // let pag2A = $('.sw-pag2-slideA');
-  // let pag2A_ba = $('.sw-pag2').find('.swiper-slide');
-  // let pag2A_active = $('.sw-pag2').find('.swiper-slide-active');
-
-  // console.log(pag2A_ba);
-  // console.log(pag2A_active);
-
-  // function myfnfn1(el) {
-  //   el.css('width', '176px');
-  //   console.log('1');
-  // }
-
-  // function myfnfn2(el) {
-  //   el.css('width', '488px');
-  //   console.log('2');
-  // }
-  // myfnfn1(pag2A_ba);
-  // myfnfn2(pag2A_active);
-
-
-  // 데이터 
-  let slideData = [
-    {
-      goodname: "스페니쉬",
-      img: url('')
-    }, 
-    {
-      goodname: "롱블랙",
-      img: url('')
-    }, 
-    {
-      goodname: "허니레몬티",
-      img: url('')
-    },
-    {
-      goodname: "스피치",
-      img: url('')
-    }
-  ];
+  // sw_pag2_main.controller.control = sw_pag2_sub;
+  // sw_pag2_sub.controller.control = sw_pag2_main;
 
 
 
+
+  // pag6 swiper
+  let sw_pag6 = new Swiper('.sw-pag6', {
+    
+  });
 
 
 
