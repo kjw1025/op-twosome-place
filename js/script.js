@@ -197,7 +197,15 @@ window.onload = function () {
       nextEl: ".sw-pag2-next",
       prevEl: ".sw-pag2-prev",
     },
+    
 
+  });
+
+  sw_pag2_main.on('transitionEnd', function() {
+    console.log('main now index :', sw_pag2_main.realIndex);
+  });
+  sw_pag2_sub.on('transitionEnd', function() {
+    console.log('sub now index :', sw_pag2_sub.realIndex);
   });
 
 
@@ -209,8 +217,23 @@ window.onload = function () {
 
 
   // pag6 swiper
+  let titleArr = ["1", "보도자료", "공지사항"]
+
   let sw_pag6 = new Swiper('.sw-pag6', {
-    
+
+    pagination: {
+      el: '.pag6-pg',
+      clickable: true,
+      allowTouchMove: false,
+      renderBullet: function (index, className) {
+        return `
+          <span class="${className}">${titleArr[index + 1]}</span>
+        `;
+
+        
+      },
+    }
+
   });
 
 

@@ -858,13 +858,17 @@ h1 {
   background-color: #fff;
 }
 
-.navbt {
+.pag6-sw-control {
   position: relative;
   display: block;
   margin: 48px 0 80px;
 }
+.pag6-pg {
+  position: relative;
+  display: inline-block;
+}
 
-.navbt a {
+.pag6-sw-control span {
   position: relative;
   display: inline-block;
   height: 34px;
@@ -872,9 +876,21 @@ h1 {
   font-size: 20px;
   font-weight: 600;
   color: #000;
+  outline-style: none;
 }
 
-.navbt a:first-child {
+.pag6-sw-control .swiper-pagination-bullet {
+  width: 80px;
+  background-color: #fff;
+  border-radius: 0;
+  opacity: 1;
+}
+.pag6-sw-control .swiper-pagination-bullet-active {
+  color: #d50037;
+  border-bottom:  2px solid #d50037;
+}
+
+.pag6-sw-control span:first-child {
   margin-left: 0;
 }
 
@@ -908,16 +924,48 @@ h1 {
   /* background-color: coral; */
 }
 
-.news-li {
+.news-wrap ul {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.news-wrap ul li {
   position: relative;
   display: block;
   width: 100%;
   height: 20%;
-  /* background-color: #ccc; */
   padding: 40px;
-
   border-bottom: 1px solid #ebebeb;
 }
+
+.news-wrap ul li p {
+  position: relative;
+  display: block;
+
+  z-index: 1;
+  transition: all 0.35s;
+}
+.news-wrap ul li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 100%;
+  background-color: #222;
+
+  transition: all 0.35s;
+}
+
+.news-wrap ul li:hover::before {
+  width: 100%;
+}
+.news-wrap ul li:hover p {
+  color: #fff;
+}
+
 
 /* notice */
 .notice-wrap {
@@ -953,6 +1001,18 @@ h1 {
   height: 100%;
   padding: 40px;
 }
+.txt-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 100%;
+  background-color: #222;
+
+  transition: all 0.35s;
+}
 
 .txt-container em {
   position: relative;
@@ -985,12 +1045,24 @@ h1 {
 
 }
 
+.txt-container:hover::before {
+  width: 100%;
+}
+.txt-container:hover strong {
+  color: #fff;
+}
+.txt-container:hover span {
+  color: #fff;
+}
+
 /* /// ===== pag 6 ===== */
 
 
 
 /*  ===== pag 7 ===== */
 .footer {
+  position: relative;
+  display: block;
   height: 526px;
   background-color: #222;
 }
