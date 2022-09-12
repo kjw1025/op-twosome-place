@@ -7,83 +7,83 @@ $(document).ready(function () {
 
 window.onload = function () {
 
-  axios
-  // main ==============
-    .get("data/mainslide.json")
-    .then(function (result) {
+  // axios
+  // // main ==============
+  //   .get("data/mainslide.json")
+  //   .then(function (result) {
 
 
-      console.log("data : ", result.data);
+  //     console.log("data : ", result.data);
 
-      let mainData_coffee = result.data.coffee
+  //     let mainData_coffee = result.data.coffee
 
-      console.log(mainData_coffee);
-
-
-      let tempHtml = '';
-      for (i = 0; i < mainData_coffee.length; i++) {
-
-        temp = `
-          <div class="swiper-slide">
-            <div class="sw-pag2-slide-wrap">
-                <a href="#" class="sw-pag2-slideA" style="background: url('images/${mainData_coffee[i].link}') no-repeat center;  background-size: cover;">${mainData_coffee[i].coffee_name}</a>
-            </div>
-          </div>
-        `;
-
-        tempHtml += temp
-
-      }
+  //     console.log(mainData_coffee);
 
 
+  //     let tempHtml = '';
+  //     for (i = 0; i < mainData_coffee.length; i++) {
 
-      document.getElementById("pag2-swMain").innerHTML = tempHtml
+  //       temp = `
+  //         <div class="swiper-slide">
+  //           <div class="sw-pag2-slide-wrap">
+  //               <a href="#" class="sw-pag2-slideA" style="background: url('images/${mainData_coffee[i].link}') no-repeat center;  background-size: cover;">${mainData_coffee[i].coffee_name}</a>
+  //           </div>
+  //         </div>
+  //       `;
 
-    })
-    .catch((err) => {
-      console.log("에러 발생 :", err)
-    });
+  //       tempHtml += temp
 
-    axios
-    // sub ==============
-    .get("data/subslide.json")
-    .then(function (result) {
-
-      console.log("data : ", result.data);
-
-      let subata_coffee = result.data.coffee
-
-      console.log(subata_coffee);
-
-
-      let tempHtml = '';
-      for (i = 0; i < subata_coffee.length; i++) {
-
-        temp = `
-          <div class="swiper-slide">
-            <div class="sw-pag2-slide-wrap">
-                <a href="#" class="sw-pag2-slideA" style="background: url('images/${subata_coffee[i].link}') no-repeat center;  background-size: cover;">${subata_coffee[i].coffee_name}</a>
-            </div>
-          </div>
-        `;
-
-        tempHtml += temp
-
-      }
+  //     }
 
 
 
-      document.getElementById("pag2-swSub").innerHTML = tempHtml
+  //     document.getElementById("pag2-swMain").innerHTML = tempHtml
 
-    })
-    .catch((err) => {
-      console.log("에러 발생 :", err)
-    });
+  //   })
+  //   .catch((err) => {
+  //     console.log("에러 발생 :", err)
+  //   });
+
+  //   axios
+  //   // sub ==============
+  //   .get("data/subslide.json")
+  //   .then(function (result) {
+
+  //     console.log("data : ", result.data);
+
+  //     let subata_coffee = result.data.coffee
+
+  //     console.log(subata_coffee);
+
+
+  //     let tempHtml = '';
+  //     for (i = 0; i < subata_coffee.length; i++) {
+
+  //       temp = `
+  //         <div class="swiper-slide">
+  //           <div class="sw-pag2-slide-wrap">
+  //               <a href="#" class="sw-pag2-slideA" style="background: url('images/${subata_coffee[i].link}') no-repeat center;  background-size: cover;">${subata_coffee[i].coffee_name}</a>
+  //           </div>
+  //         </div>
+  //       `;
+
+  //       tempHtml += temp
+
+  //     }
+
+
+
+  //     document.getElementById("pag2-swSub").innerHTML = tempHtml
+
+  //   })
+  //   .catch((err) => {
+  //     console.log("에러 발생 :", err)
+  //   });
 
 
 
 
-  console.log(axios);
+  // console.log(axios);
 
 
 
@@ -159,59 +159,20 @@ window.onload = function () {
 
 
   // pag2 slide
-
-
-  // sub 슬라이더
-  let sw_pag2_sub = new Swiper('.sw-pag2-sub', {
-    // loop: true,
-    slidesPerView: 3,
-    spaceBetween: 30,
+  var swiperObj = new Swiper('.sw-hs', {
+    loop: true,
+    centeredSlides: true,
+    slidesPerView: 12,
+    spaceBetween: 16,
+    allowTouchMove: false,
+    navigation: {
+      prevEl: '.sw-pag2-prev',
+      nextEl: '.sw-pag2-next'
+    },
     observer: true,
     observeParents: true,
-    allowTouchMove: false,
-    // watchSlidesProgress: true,
-
-    // nav
-    navigation: {
-      nextEl: ".sw-pag2-next",
-      prevEl: ".sw-pag2-prev",
-    },
-
   });
 
-  // main 슬라이더
-  let sw_pag2_main = new Swiper('.sw-pag2-main', {
-    // loop: true,
-    slidesPerView: 1,
-    spaceBetween: 0,
-    observer: true,
-    observeParents: true,
-    allowTouchMove: false,
-
-    thumbs: {
-      swiper: sw_pag2_sub
-    },
-
-    // nav
-    navigation: {
-      nextEl: ".sw-pag2-next",
-      prevEl: ".sw-pag2-prev",
-    },
-    
-
-  });
-
-  sw_pag2_main.on('transitionEnd', function() {
-    console.log('main now index :', sw_pag2_main.realIndex);
-  });
-  sw_pag2_sub.on('transitionEnd', function() {
-    console.log('sub now index :', sw_pag2_sub.realIndex);
-  });
-
-
-
-  // sw_pag2_main.controller.control = sw_pag2_sub;
-  // sw_pag2_sub.controller.control = sw_pag2_main;
 
 
 
@@ -230,7 +191,7 @@ window.onload = function () {
           <span class="${className}">${titleArr[index + 1]}</span>
         `;
 
-        
+
       },
     }
 
