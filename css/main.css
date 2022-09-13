@@ -631,15 +631,23 @@ h1 {
 
 .pag2-mainsubtxt {
   position: relative;
-  display: block;
+  display: none;
   font-size: 16px;
   margin-bottom: 20px;
+}
+.pag2-mainsubtxt-focus {
+  display: block;
 }
 
 .pag2-mainh4 {
   display: inline-block;
-  border-bottom: 3px solid #000;
   line-height: 1;
+  opacity: 0.5;
+}
+
+.pag2-mainh4-focus {
+  border-bottom: 3px solid #000;
+  opacity: 1;
 }
 
 /* swiper */
