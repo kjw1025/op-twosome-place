@@ -1,0 +1,73 @@
+{
+    "coffee": [
+        {
+            "name": "스페니쉬 연유 라떼",
+            "link": "menu_coffee1.jpg"
+        },
+        {
+            "name": "롱블랙",
+            "link": "menu_coffee2.jpg"
+        },
+        {
+            "name": "TWG 1837 블랙티",
+            "link": "menu_coffee3.jpg"
+        },
+        {
+            "name": "스트로베리 피치 프라페",
+            "link": "menu_coffee4.jpg"
+        }
+    ],
+    "dessert": [
+        {
+            "name": "스트로베리 초콜릿 생크림",
+            "link": "menu_dessert1.jpg"
+        },
+        {
+            "name": "마스카포네 티라미수",
+            "link": "menu_dessert2.jpg"
+        },
+        {
+            "name": "레드벨벳",
+            "link": "menu_dessert3.jpg"
+        },
+        {
+            "name": "뉴욕 치즈 케이크",
+            "link": "menu_dessert4.jpg"
+        },
+        {
+            "name": "아이스 박스",
+            "link": "menu_dessert5.jpg"
+        },
+        {
+            "name": "마카롱 세트(6개입)",
+            "link": "menu_dessert6.jpg"
+        },
+        {
+            "name": "소프트 아이스크림(컵)",
+            "link": "menu_dessert7.jpg"
+        }
+    ],
+    "deli": [
+        {
+            "name": "B.E.L.T.샌드위치",
+            "link": "menu_deli1.jpg"
+        },
+        {
+            "name": "페스토 햄치즈 파니니",
+            "link": "menu_deli2.jpg"
+        },
+        {
+            "name": "클래식 루벤",
+            "link": "menu_deli3.jpg"
+        },
+        {
+            "name": "그릴드 치킨 샐러드",
+            "link": "menu_deli4.jpg"
+        },
+        {
+            "name": "크루아상",
+            "link": "menu_deli5.jpg"
+        }
+    ]
+    
+}

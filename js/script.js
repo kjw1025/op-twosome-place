@@ -7,84 +7,45 @@ $(document).ready(function () {
 
 window.onload = function () {
 
-  // axios
-  // // main ==============
-  //   .get("data/mainslide.json")
-  //   .then(function (result) {
+  fetchData = () => {
+    axios
+      .get("data/pag2_data.json")
+      .then(function (response) {
+        console.log("data : ", response.data);
+
+        let coffeeData = response.data.coffee;
+        let dessertData = response.data.dessert;
+        let deliData = response.data.deli;
+
+        console.log(coffeeData);
+        console.log(dessertData);
+        console.log(deliData);
+
+        let tempHtml = '';
+        for (i = 0; i < coffeeData.length; i++) {
+
+            temp = `
+              <div class="sw-hs-slide">
+                <a href="#">
+                  <img src="images/${coffeeData[i].link}" alt="${coffeeData[i].name}">
+                </a>
+              </div>
+            `;
+
+          tempHtml += temp
+
+        }
+        document.getElementById("sw-hs-wrap").innerHTML = tempHtml
+
+      })
+      .catch(err => console.log("에러 발생 :", err));
+
+  }
+
+  fetchData();
 
 
-  //     console.log("data : ", result.data);
-
-  //     let mainData_coffee = result.data.coffee
-
-  //     console.log(mainData_coffee);
-
-
-  //     let tempHtml = '';
-  //     for (i = 0; i < mainData_coffee.length; i++) {
-
-  //       temp = `
-  //         <div class="swiper-slide">
-  //           <div class="sw-pag2-slide-wrap">
-  //               <a href="#" class="sw-pag2-slideA" style="background: url('images/${mainData_coffee[i].link}') no-repeat center;  background-size: cover;">${mainData_coffee[i].coffee_name}</a>
-  //           </div>
-  //         </div>
-  //       `;
-
-  //       tempHtml += temp
-
-  //     }
-
-
-
-  //     document.getElementById("pag2-swMain").innerHTML = tempHtml
-
-  //   })
-  //   .catch((err) => {
-  //     console.log("에러 발생 :", err)
-  //   });
-
-  //   axios
-  //   // sub ==============
-  //   .get("data/subslide.json")
-  //   .then(function (result) {
-
-  //     console.log("data : ", result.data);
-
-  //     let subata_coffee = result.data.coffee
-
-  //     console.log(subata_coffee);
-
-
-  //     let tempHtml = '';
-  //     for (i = 0; i < subata_coffee.length; i++) {
-
-  //       temp = `
-  //         <div class="swiper-slide">
-  //           <div class="sw-pag2-slide-wrap">
-  //               <a href="#" class="sw-pag2-slideA" style="background: url('images/${subata_coffee[i].link}') no-repeat center;  background-size: cover;">${subata_coffee[i].coffee_name}</a>
-  //           </div>
-  //         </div>
-  //       `;
-
-  //       tempHtml += temp
-
-  //     }
-
-
-
-  //     document.getElementById("pag2-swSub").innerHTML = tempHtml
-
-  //   })
-  //   .catch((err) => {
-  //     console.log("에러 발생 :", err)
-  //   });
-
-
-
-
-  // console.log(axios);
-
+      
 
 
   let header = $('.header');
@@ -159,20 +120,117 @@ window.onload = function () {
 
 
   // pag2 slide
-  var swiperObj = new Swiper('.sw-hs', {
-    loop: true,
-    centeredSlides: true,
-    slidesPerView: 12,
-    spaceBetween: 16,
-    allowTouchMove: false,
-    navigation: {
-      prevEl: '.sw-pag2-prev',
-      nextEl: '.sw-pag2-next'
-    },
-    observer: true,
-    observeParents: true,
-  });
 
+  // 슬라이드 구현
+  let swhsSlide = $('.sw-hs-slide');
+  let swhsWMax = 488;
+  let swhsW = 176;
+  let swhsD = 30;
+  let posX = [];
+  let tempPos = 0;
+  // 최소 위치
+  let swhsMin = -(swhsW + swhsD);
+  let swhsTotal = swhsSlide.length;
+  let swhsIndex = 0;
+  let swhsDir = 'left';
+  // 초기 위치 배열
+  $.each(swhsSlide, function (index, item) {
+    if (index == 0) {
+      posX[index] = 0;
+      tempPos = swhsWMax + swhsD
+    } else {
+      posX[index] = tempPos;
+      tempPos = tempPos + swhsD + swhsW;
+    }
+  });
+  posX[swhsTotal] = tempPos;
+
+  // 초기 셋팅
+  $.each(swhsSlide, function (index, item) {
+    $(this).css('left', posX[index]);
+    $(this).attr('data-index', index)
+  })
+
+  let swhsNext = $('.sw-pag2-next');
+  let swhsPrev = $('.sw-pag2-prev');
+
+  swhsNext.click(function () {
+    swhsIndex++;
+    if (swhsIndex >= swhsTotal) {
+      swhsIndex = 0;
+    }
+    swhsDir = 'left';
+    swhsMove();
+  })
+
+  swhsPrev.click(function () {
+    swhsIndex--;
+    if (swhsIndex < 0) {
+      swhsIndex = swhsTotal - 1;
+    }
+    swhsDir = 'right';
+    swhsMove();
+  })
+
+  function swhsMove() {
+
+    if (swhsDir == 'left') {
+      $.each(swhsSlide, function (index, item) {
+        let tempIndex = $(this).attr('data-index');
+        let tempX = tempIndex - 1;
+        let tgX = 0;
+        if (tempX < 0) {
+          $(this).css('left', posX[swhsTotal]);
+          $(this).removeClass('sw-hs-slide-active');
+          $(this).attr('data-index', swhsTotal - 1);
+          tgX = posX[swhsTotal - 1];
+        } else if (tempX == 0) {
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        } else {
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        }
+
+        gsap.to($(this), 0.1, {
+          left: tgX,
+          onComleted: function () {
+            swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
+          }
+        });
+
+      })
+
+    } else {
+
+      $.each(swhsSlide, function (index, item) {
+        let tempIndex = $(this).attr('data-index');
+        tempIndex = parseInt(tempIndex);
+
+        let tempX = tempIndex + 1;
+        let tgX = 0;
+        if (tempX >= swhsTotal) {
+          $(this).css('left', swhsMin);
+          $(this).attr('data-index', 0);
+          tempX = 0;
+          tgX = posX[0];
+        } else if (tempX == 1) {
+          $(this).removeClass('sw-hs-slide-active');
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        } else {
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        }
+        gsap.to($(this), 0.1, {
+          left: tgX,
+          onComleted: function () {
+            swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
+          }
+        });
+      })
+    }
+  }
 
 
 
