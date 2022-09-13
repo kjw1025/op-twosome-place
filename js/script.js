@@ -49,6 +49,8 @@ window.onload = function () {
 
   }
 
+  
+  // pag2 slide
   function playSlide() {
 
     // 슬라이드 구현
@@ -168,14 +170,17 @@ window.onload = function () {
 
   fetchData();
 
+  pag2TxtBoxA.eq(0).find('h4').addClass('pag2-mainh4-focus');
+  pag2TxtBoxA.eq(0).find('p').addClass('pag2-mainsubtxt-focus');
+  
 
   $.each(pag2TxtBoxA, function (index, item) {
     $(this).click(function (event) {
       event.preventDefault();
       makeSlide(index);
 
-      $(this).find('h4').removeClass('pag2-mainh4-focus');
-      $(this).find('p').removeClass('pag2-mainsubtxt-focus');
+      pag2TxtBoxA.find('h4').removeClass('pag2-mainh4-focus');
+      pag2TxtBoxA.find('p').removeClass('pag2-mainsubtxt-focus');
 
       $(this).find('h4').addClass('pag2-mainh4-focus');
       $(this).find('p').addClass('pag2-mainsubtxt-focus');
@@ -256,9 +261,27 @@ window.onload = function () {
     },
   });
 
+  //pag4 swiper
+
+  let sw_pag4 = new Swiper('.sw-pag4', {
+    loop: true,
+    slidesPerView:2,
+    spaceBetween: 460,
+    allowTouchMove: false,
+    // pg
+    pagination: {
+      el: ".sw-pag4-pg",
+      type: "fraction",
+    },
+    // nav
+    navigation: {
+      nextEl: ".sw-pag4-next",
+      prevEl: ".sw-pag4-prev",
+    }
+  });
 
 
-  // pag2 slide
+
 
 
 
