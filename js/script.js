@@ -9,8 +9,45 @@ window.onload = function () {
 
 
   let pag2TxtBoxA = $('.pag-2-txtbox a');
+  let pag2Title = $('.sw-pag2-title');
   let datArr = [];
+  let dataArrIndex = 0;
+  
+   // 슬라이드 구현
+   let swhsSlide = $('.sw-hs-slide');
+   let swhsWMax = 488;
+   let swhsW = 176;
+   let swhsD = 30;
+   let posX = [];
+   let tempPos = 0;
+   // 최소 위치
+   let swhsMin = -(swhsW + swhsD);
+   let swhsTotal = swhsSlide.length;
+   let swhsIndex = 0;
+   let swhsDir = 'left';
 
+  let swhsNext = $('.sw-pag2-next');
+  let swhsPrev = $('.sw-pag2-prev');
+
+  swhsNext.click(function () {
+    swhsIndex++;
+    if (swhsIndex >= swhsTotal) {
+      swhsIndex = 0;
+    }
+    swhsDir = 'left';
+    swhsMove();
+  })
+
+  swhsPrev.click(function () {
+    swhsIndex--;
+    if (swhsIndex < 0) {
+      swhsIndex = swhsTotal - 1;
+    }
+    swhsDir = 'right';
+    swhsMove();
+  })
+
+      
   function fetchData() {
     axios
       .get("data/pag2_data.json")
@@ -21,13 +58,14 @@ window.onload = function () {
         datArr.push(response.data.dessert);
         datArr.push(response.data.deli);
 
-        makeSlide(0)
+        makeSlide(0);
       })
       .catch(err => console.log("에러 발생 :", err));
   }
 
 
   function makeSlide(_index) {
+    
     let data = datArr[_index];
     let tempHtml = '';
     for (i = 0; i < data.length; i++) {
@@ -44,6 +82,12 @@ window.onload = function () {
 
     }
     document.getElementById("sw-hs-wrap").innerHTML = tempHtml;
+    
+    swhsSlide = $('.sw-hs-slide');
+    swhsTotal = swhsSlide.length;
+    swhsIndex = 0;
+    swhsDir = 'left';
+    dataArrIndex = _index;
 
     playSlide();
 
@@ -53,18 +97,6 @@ window.onload = function () {
   // pag2 slide
   function playSlide() {
 
-    // 슬라이드 구현
-    let swhsSlide = $('.sw-hs-slide');
-    let swhsWMax = 488;
-    let swhsW = 176;
-    let swhsD = 30;
-    let posX = [];
-    let tempPos = 0;
-    // 최소 위치
-    let swhsMin = -(swhsW + swhsD);
-    let swhsTotal = swhsSlide.length;
-    let swhsIndex = 0;
-    let swhsDir = 'left';
     // 초기 위치 배열
     $.each(swhsSlide, function (index, item) {
       if (index == 0) {
@@ -83,89 +115,78 @@ window.onload = function () {
     $.each(swhsSlide, function (index, item) {
       $(this).css('left', posX[index]);
       $(this).attr('data-index', index)
-    })
+    })    
 
-    let swhsNext = $('.sw-pag2-next');
-    let swhsPrev = $('.sw-pag2-prev');
+    // 최초값.
+    let tt = datArr[dataArrIndex][swhsIndex].name;
+    pag2Title.text(tt);
 
-    swhsNext.click(function () {
-      swhsIndex++;
-      if (swhsIndex >= swhsTotal) {
-        swhsIndex = 0;
-      }
-      swhsDir = 'left';
-      swhsMove();
-    })
+  }
 
-    swhsPrev.click(function () {
-      swhsIndex--;
-      if (swhsIndex < 0) {
-        swhsIndex = swhsTotal - 1;
-      }
-      swhsDir = 'right';
-      swhsMove();
-    })
+  
+  function swhsMove() {
+    // 변경값
+    let tempName = datArr[dataArrIndex][swhsIndex].name;
+    pag2Title.text(tempName);
 
-    function swhsMove() {
+    if (swhsDir == 'left') {
+      $.each(swhsSlide, function (index, item) {
+        let tempIndex = $(this).attr('data-index');
+        let tempX = tempIndex - 1;
+        let tgX = 0;
+        if (tempX < 0) {
+          $(this).css('left', posX[swhsTotal]);
+          $(this).removeClass('sw-hs-slide-active');
+          $(this).attr('data-index', swhsTotal - 1);
+          tgX = posX[swhsTotal - 1];
+        } else if (tempX == 0) {
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        } else {
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        }
 
-      if (swhsDir == 'left') {
-        $.each(swhsSlide, function (index, item) {
-          let tempIndex = $(this).attr('data-index');
-          let tempX = tempIndex - 1;
-          let tgX = 0;
-          if (tempX < 0) {
-            $(this).css('left', posX[swhsTotal]);
-            $(this).removeClass('sw-hs-slide-active');
-            $(this).attr('data-index', swhsTotal - 1);
-            tgX = posX[swhsTotal - 1];
-          } else if (tempX == 0) {
-            $(this).attr('data-index', tempX);
-            tgX = posX[tempX];
-          } else {
-            $(this).attr('data-index', tempX);
-            tgX = posX[tempX];
+        gsap.to($(this), 0.1, {
+          left: tgX,
+          onComleted: function () {
+            swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
           }
+        });
 
-          gsap.to($(this), 0.1, {
-            left: tgX,
-            onComleted: function () {
-              swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
-            }
-          });
+      })
 
-        })
+    } else {
 
-      } else {
+      $.each(swhsSlide, function (index, item) {
+        let tempIndex = $(this).attr('data-index');
+        tempIndex = parseInt(tempIndex);
 
-        $.each(swhsSlide, function (index, item) {
-          let tempIndex = $(this).attr('data-index');
-          tempIndex = parseInt(tempIndex);
-
-          let tempX = tempIndex + 1;
-          let tgX = 0;
-          if (tempX >= swhsTotal) {
-            $(this).css('left', swhsMin);
-            $(this).attr('data-index', 0);
-            tempX = 0;
-            tgX = posX[0];
-          } else if (tempX == 1) {
-            $(this).removeClass('sw-hs-slide-active');
-            $(this).attr('data-index', tempX);
-            tgX = posX[tempX];
-          } else {
-            $(this).attr('data-index', tempX);
-            tgX = posX[tempX];
+        let tempX = tempIndex + 1;
+        let tgX = 0;
+        if (tempX >= swhsTotal) {
+          $(this).css('left', swhsMin);
+          $(this).attr('data-index', 0);
+          tempX = 0;
+          tgX = posX[0];
+        } else if (tempX == 1) {
+          $(this).removeClass('sw-hs-slide-active');
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        } else {
+          $(this).attr('data-index', tempX);
+          tgX = posX[tempX];
+        }
+        gsap.to($(this), 0.1, {
+          left: tgX,
+          onComleted: function () {
+            swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
           }
-          gsap.to($(this), 0.1, {
-            left: tgX,
-            onComleted: function () {
-              swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
-            }
-          });
-        })
-      }
+        });
+      })
     }
   }
+  
 
 
   fetchData();
@@ -290,29 +311,19 @@ window.onload = function () {
   let titleArr = ["1", "보도자료", "공지사항"]
 
   let sw_pag6 = new Swiper('.sw-pag6', {
-
+    
+    allowTouchMove: false,
     pagination: {
       el: '.pag6-pg',
       clickable: true,
-      allowTouchMove: false,
       renderBullet: function (index, className) {
         return `
           <span class="${className}">${titleArr[index + 1]}</span>
         `;
-
-
       },
     }
 
   });
-
-
-
-
-
-
-
-
 
 
   // // gotobox
