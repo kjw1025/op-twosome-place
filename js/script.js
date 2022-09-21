@@ -12,19 +12,19 @@ window.onload = function () {
   let pag2Title = $('.sw-pag2-title');
   let datArr = [];
   let dataArrIndex = 0;
-  
-   // 슬라이드 구현
-   let swhsSlide = $('.sw-hs-slide');
-   let swhsWMax = 488;
-   let swhsW = 176;
-   let swhsD = 30;
-   let posX = [];
-   let tempPos = 0;
-   // 최소 위치
-   let swhsMin = -(swhsW + swhsD);
-   let swhsTotal = swhsSlide.length;
-   let swhsIndex = 0;
-   let swhsDir = 'left';
+
+  // 슬라이드 구현
+  let swhsSlide = $('.sw-hs-slide');
+  let swhsWMax = 488;
+  let swhsW = 176;
+  let swhsD = 30;
+  let posX = [];
+  let tempPos = 0;
+  // 최소 위치
+  let swhsMin = -(swhsW + swhsD);
+  let swhsTotal = swhsSlide.length;
+  let swhsIndex = 0;
+  let swhsDir = 'left';
 
   let swhsNext = $('.sw-pag2-next');
   let swhsPrev = $('.sw-pag2-prev');
@@ -47,7 +47,7 @@ window.onload = function () {
     swhsMove();
   })
 
-      
+
   function fetchData() {
     axios
       .get("data/pag2_data.json")
@@ -63,9 +63,8 @@ window.onload = function () {
       .catch(err => console.log("에러 발생 :", err));
   }
 
-
   function makeSlide(_index) {
-    
+
     let data = datArr[_index];
     let tempHtml = '';
     for (i = 0; i < data.length; i++) {
@@ -82,7 +81,7 @@ window.onload = function () {
 
     }
     document.getElementById("sw-hs-wrap").innerHTML = tempHtml;
-    
+
     swhsSlide = $('.sw-hs-slide');
     swhsTotal = swhsSlide.length;
     swhsIndex = 0;
@@ -93,7 +92,6 @@ window.onload = function () {
 
   }
 
-  
   // pag2 slide
   function playSlide() {
 
@@ -115,7 +113,7 @@ window.onload = function () {
     $.each(swhsSlide, function (index, item) {
       $(this).css('left', posX[index]);
       $(this).attr('data-index', index)
-    })    
+    })
 
     // 최초값.
     let tt = datArr[dataArrIndex][swhsIndex].name;
@@ -123,7 +121,6 @@ window.onload = function () {
 
   }
 
-  
   function swhsMove() {
     // 변경값
     let tempName = datArr[dataArrIndex][swhsIndex].name;
@@ -186,14 +183,14 @@ window.onload = function () {
       })
     }
   }
-  
+
 
 
   fetchData();
 
   pag2TxtBoxA.eq(0).find('h4').addClass('pag2-mainh4-focus');
   pag2TxtBoxA.eq(0).find('p').addClass('pag2-mainsubtxt-focus');
-  
+
 
   $.each(pag2TxtBoxA, function (index, item) {
     $(this).click(function (event) {
@@ -244,6 +241,8 @@ window.onload = function () {
 
 
 
+
+
   // allmenu 기능
 
   let closeBt = $('.allmenu-close-bt');
@@ -258,6 +257,25 @@ window.onload = function () {
   closeBt.click(function () {
     allmenuWrap.removeClass('allmenu-wrap-open');
   });
+
+  // on/off
+  function MyWaypointOnOff(_fromWhere, _what, _onClass, _offset) {
+
+    new Waypoint({
+      element: _fromWhere,
+      handler: function (direction) {
+        if (direction == 'down') {
+          _what.addClass(_onClass);
+        } else if (direction == 'up') {
+          _what.removeClass(_onClass);
+        }
+      },
+      offset: _offset
+    });
+
+  }
+
+  MyWaypointOnOff($('.pag-2'),);
 
 
 
@@ -286,7 +304,7 @@ window.onload = function () {
 
   let sw_pag4 = new Swiper('.sw-pag4', {
     loop: true,
-    slidesPerView:2,
+    slidesPerView: 2,
     spaceBetween: 460,
     allowTouchMove: false,
     // pg
@@ -311,7 +329,7 @@ window.onload = function () {
   let titleArr = ["1", "보도자료", "공지사항"]
 
   let sw_pag6 = new Swiper('.sw-pag6', {
-    
+
     allowTouchMove: false,
     pagination: {
       el: '.pag6-pg',

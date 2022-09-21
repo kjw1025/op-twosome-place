@@ -145,7 +145,7 @@ h4 {
 .wrap {
   position: relative;
   display: block;
-  background-color: rgb(211, 211, 211);
+  /* background-color: rgb(211, 211, 211); */
 }
 
 
@@ -252,7 +252,6 @@ h1 {
   justify-content: center;
   width: 100%;
   height: 424px;
-  /* background-color: burlywood; */
 }
 
 
@@ -659,7 +658,6 @@ h1 {
   display: block;
   width: 100%;
   height: 488px;
-  /* background-color: pink; */
 }
 
 .sw-hs {
@@ -668,7 +666,6 @@ h1 {
   left: 45%;
   width: 100%;
   height: 488px;
-  /* background-color: #f5ce3e; */
 }
 
 .sw-hs-slide {
@@ -759,7 +756,6 @@ h1 {
   display: block;
   width: 100%;
   height: 550px;
-  /* background-color: #f5ce3e; */
 }
 
 .pag4-slide-wrap {
@@ -1322,7 +1318,6 @@ h1 {
   display: block;
   width: 600px;
   height: 550px;
-  /* background-color: brown; */
 }
 
 
@@ -1332,7 +1327,6 @@ h1 {
   display: block;
   width: 100%;
   height: 100%;
-  /* background-color: coral; */
 }
 
 .news-wrap ul {
@@ -1387,7 +1381,6 @@ h1 {
   display: block;
   width: 100%;
   height: 100%;
-  /* background-color: yellow; */
 }
 
 .notice-wrap ul {
