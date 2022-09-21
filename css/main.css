@@ -283,9 +283,10 @@ h1 {
   font-weight: 700;
   line-height: 27px;
   padding: 37px 0;
+}
+.maingnb-depth1_li_a-default {
   color: #fff;
 }
-
 .maingnb-depth1_li_a-open {
   color: #000;
 }

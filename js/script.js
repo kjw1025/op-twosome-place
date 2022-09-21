@@ -207,52 +207,85 @@ window.onload = function () {
   });
 
 
-
-
+  // header
 
   let header = $('.header');
-  let mainGnbDepth1_li_a = $('.maingnb-depth-1 > li > a');
+  let mainGnbDepth1_li_a = $('.maingnb-depth-1').find('li').find('a');
   let logo = $('.logo');
   let allmenuBt = $('.allmenu-bt');
 
+  let pag2Y = $('.pag-2').offset().top;
+  console.log('pag-2 Y :', pag2Y);
 
-  // 메인메뉴 오픈 기능
-  header.mouseenter(function () {
+  let nowY = window.scrollY;
+  // console.log('현재위치 :', nowY);
 
-    header.addClass('header-open');
-    // depth1_li_a.addClass('depth1_li_a-open');
-    mainGnbDepth1_li_a.css('color', '#000');
-    logo.addClass('logo-open');
-    allmenuBt.addClass('allmenu-bt-open');
 
+  $(window).scroll(function () {
+    nowY = $(document).scrollTop();
+    // console.log('현재 실시간위치 :', nowY);
+
+    if (nowY < pag2Y) {
+      // console.log('현재위치가 pag2 보다 낮습니다 :', nowY);
+      mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-default');
+
+      // 메인메뉴 오픈 기능
+      header.mouseenter(function () {
+
+        mainGnbDepth1_li_a.removeClass('maingnb-depth1_li_a-default');
+        mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-open');
+
+        header.addClass('header-open');
+        logo.addClass('logo-open');
+        allmenuBt.addClass('allmenu-bt-open');
+      });
+
+      // 메인메뉴 닫기 기능
+      header.mouseleave(function () {
+
+        mainGnbDepth1_li_a.removeClass('maingnb-depth1_li_a-open');
+        mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-default');
+
+        header.removeClass('header-open');
+        logo.removeClass('logo-open');
+        allmenuBt.removeClass('allmenu-bt-open');
+      });
+
+    } else {
+      // console.log('현재위치가 pag2 보다 높습니다 :', nowY);
+      
+      // 기본값
+      mainGnbDepth1_li_a.removeClass('maingnb-depth1_li_a-default');
+      mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-open');
+      logo.addClass('logo-open');
+      allmenuBt.addClass('allmenu-bt-open');
+      
+      // 메인메뉴 오픈 기능
+      header.mouseenter(function () {
+
+        header.addClass('header-open');
+        
+      });
+      // 메인메뉴 닫기 기능
+      header.mouseleave(function () {
+
+        header.removeClass('header-open');
+
+      });
+    }
   });
-
-  // 메인메뉴 닫기 기능
-  header.mouseleave(function () {
-
-    header.removeClass('header-open');
-    // depth1_li_a.removeClass('depth1_li_a-open');
-    mainGnbDepth1_li_a.css('color', '#fff');
-    logo.removeClass('logo-open');
-    allmenuBt.removeClass('allmenu-bt-open');
-
-  });
-
 
 
 
 
 
   // allmenu 기능
-
   let closeBt = $('.allmenu-close-bt');
   let allmenuWrap = $('.allmenu-wrap');
-
   // all menu 오픈기능
   allmenuBt.click(function () {
     allmenuWrap.addClass('allmenu-wrap-open');
   });
-
   // all menu 닫기기능
   closeBt.click(function () {
     allmenuWrap.removeClass('allmenu-wrap-open');
@@ -275,7 +308,9 @@ window.onload = function () {
 
   }
 
-  MyWaypointOnOff($('.pag-2'),);
+  MyWaypointOnOff($('.pag-2'), logo, 'logo-open', '10%'); // logo
+  MyWaypointOnOff($('.pag-2'), allmenuBt, 'allmenu-bt-open', '10%'); // allmenuBt
+  MyWaypointOnOff($('.pag-2'), mainGnbDepth1_li_a, 'maingnb-depth1_li_a-open', '10%'); // mainGnbDepth1_li_a
 
 
 
