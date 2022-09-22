@@ -1,4 +1,124 @@
-$(document).ready(function () {});
+$(document).ready(function () {
+
+  // 마우스 휠 코드
+  let section = $('.wrap > section');
+  let footer = $('.footer');
+
+  let sectionSpeed = 500;
+  let sectionPos = [];
+  let sectionIndex = 0;
+
+  // 연속 휠 막기
+  let scrollIng = false;
+  let wheelIng = true;
+
+  // 화면사이즈 체크
+  function wheelCheckFn(){
+    let wW = window.innerWidth;
+    if(wW <= 1000) {
+      wheelIng = false;
+    }else{
+      wheelIng = true;
+    }
+  };
+  wheelCheckFn();
+  $(window).resize(function(){
+    wheelCheckFn();
+  });
+
+  // 위치 파악 (Y 스크롤 이동 px )
+  function resetSection() {
+
+    $.each(section, function (index, item) {
+      let tempY = $(this).offset().top;
+      tempY = Math.ceil(tempY);
+      sectionPos[index] = tempY;
+    });
+    
+    // footer 위치를 추가 및 변경 합니다.
+    sectionPos[sectionPos.length] = Math.ceil(footer.offset().top);
+  }
+  // 최초에 새로고침 또는 실행시 위치값파악
+  resetSection();  
+
+  // footer 추가로 인한 코드 위치 변경
+  let sectionTotal = sectionPos.length; // result : 7
+
+
+  // $(window).resize(function () {
+  //   resetSection();
+
+  //   if(wheelIng) {      
+  //     // 색상 셋팅
+  //     sectionColor();
+  //     gsap.to($('html'), sectionSpeed / 1000, {
+  //       scrollTo: sectionPos[sectionIndex],
+  //       onComplete: function () {
+  //         scrollIng = false;
+  //       }
+  //     });
+  //   }
+
+  // });
+  
+  // 스크롤바의 윗쪽 위치값을 파악한다.
+  $(window).scroll(function(){
+    
+    if(wheelIng) {
+      return;
+    }
+    
+    let tempY = $(window).scrollTop();
+    tempY = Math.ceil(tempY);
+    for(let i = sectionTotal - 1; i >= 0; i--) {
+      let tempMax = sectionPos[i];
+      if(tempY >= tempMax) {
+        sectionIndex = i;
+        break;
+      }
+    }
+  });
+
+  // 마우스 휠 체크
+  $(window).bind('mousewheel DOMMouseScroll', function (event) {
+    // DOMMouseScroll 를 넣는 이유는 파이어폭스에서 작동하기 위해
+
+
+    let distance = event.originalEvent.wheelDelta; // 휠이 위,아래로 움직임을 판단
+
+    // 이 코드는 파이어폭스에서 작동하기 위해 넣은 코드
+    if (distance == null) {
+      distance = event.originalEvent.detail * -1; 
+    }
+    
+    // 화면 사이즈에 따른 작동여부
+    if(wheelIng != true) {
+      return;
+    }
+    
+    // 연속 휠 막아준다.
+    if (scrollIng) {
+      return;
+    }
+    scrollIng = true;
+
+    if (distance < 0) {
+      sectionIndex++;
+      if (sectionIndex >= sectionTotal) {
+        sectionIndex = sectionTotal - 1;
+      }
+    } else {
+      sectionIndex--;
+      if (sectionIndex <= 0) {
+        sectionIndex = 0;
+      }
+    }
+
+  });
+
+});
+
+
 
 window.onload = function () {
   let pag2TxtBoxA = $(".pag-2-txtbox a");
@@ -214,7 +334,7 @@ window.onload = function () {
     allmenuWrap.removeClass("allmenu-wrap-open");
   });
 
-  allmenuWrap.addClass("allmenu-wrap-open");
+  // allmenuWrap.addClass("allmenu-wrap-open");
 
   let allMenuDepth1 = $(".allmenu-depth-1");
   let allMenuDepth1LiA = $(".allmenu-depth-1 > li > a");
