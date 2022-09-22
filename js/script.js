@@ -1,20 +1,13 @@
-$(document).ready(function () {
-
-
-
-
-});
+$(document).ready(function () {});
 
 window.onload = function () {
-
-
-  let pag2TxtBoxA = $('.pag-2-txtbox a');
-  let pag2Title = $('.sw-pag2-title');
+  let pag2TxtBoxA = $(".pag-2-txtbox a");
+  let pag2Title = $(".sw-pag2-title");
   let datArr = [];
   let dataArrIndex = 0;
 
   // 슬라이드 구현
-  let swhsSlide = $('.sw-hs-slide');
+  let swhsSlide = $(".sw-hs-slide");
   let swhsWMax = 488;
   let swhsW = 176;
   let swhsD = 30;
@@ -24,29 +17,28 @@ window.onload = function () {
   let swhsMin = -(swhsW + swhsD);
   let swhsTotal = swhsSlide.length;
   let swhsIndex = 0;
-  let swhsDir = 'left';
+  let swhsDir = "left";
 
-  let swhsNext = $('.sw-pag2-next');
-  let swhsPrev = $('.sw-pag2-prev');
+  let swhsNext = $(".sw-pag2-next");
+  let swhsPrev = $(".sw-pag2-prev");
 
   swhsNext.click(function () {
     swhsIndex++;
     if (swhsIndex >= swhsTotal) {
       swhsIndex = 0;
     }
-    swhsDir = 'left';
+    swhsDir = "left";
     swhsMove();
-  })
+  });
 
   swhsPrev.click(function () {
     swhsIndex--;
     if (swhsIndex < 0) {
       swhsIndex = swhsTotal - 1;
     }
-    swhsDir = 'right';
+    swhsDir = "right";
     swhsMove();
-  })
-
+  });
 
   function fetchData() {
     axios
@@ -60,15 +52,13 @@ window.onload = function () {
 
         makeSlide(0);
       })
-      .catch(err => console.log("에러 발생 :", err));
+      .catch((err) => console.log("에러 발생 :", err));
   }
 
   function makeSlide(_index) {
-
     let data = datArr[_index];
-    let tempHtml = '';
+    let tempHtml = "";
     for (i = 0; i < data.length; i++) {
-
       temp = `
           <div class="sw-hs-slide">
             <a href="#">
@@ -77,29 +67,26 @@ window.onload = function () {
           </div>
         `;
 
-      tempHtml += temp
-
+      tempHtml += temp;
     }
     document.getElementById("sw-hs-wrap").innerHTML = tempHtml;
 
-    swhsSlide = $('.sw-hs-slide');
+    swhsSlide = $(".sw-hs-slide");
     swhsTotal = swhsSlide.length;
     swhsIndex = 0;
-    swhsDir = 'left';
+    swhsDir = "left";
     dataArrIndex = _index;
 
     playSlide();
-
   }
 
   // pag2 slide
   function playSlide() {
-
     // 초기 위치 배열
     $.each(swhsSlide, function (index, item) {
       if (index == 0) {
         posX[index] = 0;
-        tempPos = swhsWMax + swhsD
+        tempPos = swhsWMax + swhsD;
       } else {
         posX[index] = tempPos;
         tempPos = tempPos + swhsD + swhsW;
@@ -107,18 +94,17 @@ window.onload = function () {
     });
     posX[swhsTotal] = tempPos;
 
-    swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
+    swhsSlide.eq(swhsIndex).addClass("sw-hs-slide-active");
 
     // 초기 셋팅
     $.each(swhsSlide, function (index, item) {
-      $(this).css('left', posX[index]);
-      $(this).attr('data-index', index)
-    })
+      $(this).css("left", posX[index]);
+      $(this).attr("data-index", index);
+    });
 
     // 최초값.
     let tt = datArr[dataArrIndex][swhsIndex].name;
     pag2Title.text(tt);
-
   }
 
   function swhsMove() {
@@ -126,196 +112,130 @@ window.onload = function () {
     let tempName = datArr[dataArrIndex][swhsIndex].name;
     pag2Title.text(tempName);
 
-    if (swhsDir == 'left') {
+    if (swhsDir == "left") {
       $.each(swhsSlide, function (index, item) {
-        let tempIndex = $(this).attr('data-index');
+        let tempIndex = $(this).attr("data-index");
         let tempX = tempIndex - 1;
         let tgX = 0;
         if (tempX < 0) {
-          $(this).css('left', posX[swhsTotal]);
-          $(this).removeClass('sw-hs-slide-active');
-          $(this).attr('data-index', swhsTotal - 1);
+          $(this).css("left", posX[swhsTotal]);
+          $(this).removeClass("sw-hs-slide-active");
+          $(this).attr("data-index", swhsTotal - 1);
           tgX = posX[swhsTotal - 1];
         } else if (tempX == 0) {
-          $(this).attr('data-index', tempX);
+          $(this).attr("data-index", tempX);
           tgX = posX[tempX];
         } else {
-          $(this).attr('data-index', tempX);
+          $(this).attr("data-index", tempX);
           tgX = posX[tempX];
         }
 
         gsap.to($(this), 0.1, {
           left: tgX,
           onComleted: function () {
-            swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
-          }
+            swhsSlide.eq(swhsIndex).addClass("sw-hs-slide-active");
+          },
         });
-
-      })
-
+      });
     } else {
-
       $.each(swhsSlide, function (index, item) {
-        let tempIndex = $(this).attr('data-index');
+        let tempIndex = $(this).attr("data-index");
         tempIndex = parseInt(tempIndex);
 
         let tempX = tempIndex + 1;
         let tgX = 0;
         if (tempX >= swhsTotal) {
-          $(this).css('left', swhsMin);
-          $(this).attr('data-index', 0);
+          $(this).css("left", swhsMin);
+          $(this).attr("data-index", 0);
           tempX = 0;
           tgX = posX[0];
         } else if (tempX == 1) {
-          $(this).removeClass('sw-hs-slide-active');
-          $(this).attr('data-index', tempX);
+          $(this).removeClass("sw-hs-slide-active");
+          $(this).attr("data-index", tempX);
           tgX = posX[tempX];
         } else {
-          $(this).attr('data-index', tempX);
+          $(this).attr("data-index", tempX);
           tgX = posX[tempX];
         }
         gsap.to($(this), 0.1, {
           left: tgX,
           onComleted: function () {
-            swhsSlide.eq(swhsIndex).addClass('sw-hs-slide-active')
-          }
+            swhsSlide.eq(swhsIndex).addClass("sw-hs-slide-active");
+          },
         });
-      })
+      });
     }
   }
 
-
-
   fetchData();
 
-  pag2TxtBoxA.eq(0).find('h4').addClass('pag2-mainh4-focus');
-  pag2TxtBoxA.eq(0).find('p').addClass('pag2-mainsubtxt-focus');
-
+  // 셀렉터
+  pag2TxtBoxA.eq(0).find("h4").addClass("pag2-mainh4-focus");
+  pag2TxtBoxA.eq(0).find("p").addClass("pag2-mainsubtxt-focus");
 
   $.each(pag2TxtBoxA, function (index, item) {
     $(this).click(function (event) {
       event.preventDefault();
       makeSlide(index);
 
-      pag2TxtBoxA.find('h4').removeClass('pag2-mainh4-focus');
-      pag2TxtBoxA.find('p').removeClass('pag2-mainsubtxt-focus');
+      pag2TxtBoxA.find("h4").removeClass("pag2-mainh4-focus");
+      pag2TxtBoxA.find("p").removeClass("pag2-mainsubtxt-focus");
 
-      $(this).find('h4').addClass('pag2-mainh4-focus');
-      $(this).find('p').addClass('pag2-mainsubtxt-focus');
-
-    })
+      $(this).find("h4").addClass("pag2-mainh4-focus");
+      $(this).find("p").addClass("pag2-mainsubtxt-focus");
+    });
   });
 
+  // haeder
+  let header = $(".header");
 
-  // header
-
-  let header = $('.header');
-  let mainGnbDepth1_li_a = $('.maingnb-depth-1').find('li').find('a');
-  let logo = $('.logo');
-  let allmenuBt = $('.allmenu-bt');
-
-  let pag2Y = $('.pag-2').offset().top;
-  console.log('pag-2 Y :', pag2Y);
-
-  let nowY = window.scrollY;
-  // console.log('현재위치 :', nowY);
-
-
-  $(window).scroll(function () {
-    nowY = $(document).scrollTop();
-    // console.log('현재 실시간위치 :', nowY);
-
-    if (nowY < pag2Y) {
-      // console.log('현재위치가 pag2 보다 낮습니다 :', nowY);
-      mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-default');
-
-      // 메인메뉴 오픈 기능
-      header.mouseenter(function () {
-
-        mainGnbDepth1_li_a.removeClass('maingnb-depth1_li_a-default');
-        mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-open');
-
-        header.addClass('header-open');
-        logo.addClass('logo-open');
-        allmenuBt.addClass('allmenu-bt-open');
-      });
-
-      // 메인메뉴 닫기 기능
-      header.mouseleave(function () {
-
-        mainGnbDepth1_li_a.removeClass('maingnb-depth1_li_a-open');
-        mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-default');
-
-        header.removeClass('header-open');
-        logo.removeClass('logo-open');
-        allmenuBt.removeClass('allmenu-bt-open');
-      });
-
-    } else {
-      // console.log('현재위치가 pag2 보다 높습니다 :', nowY);
-      
-      // 기본값
-      mainGnbDepth1_li_a.removeClass('maingnb-depth1_li_a-default');
-      mainGnbDepth1_li_a.addClass('maingnb-depth1_li_a-open');
-      logo.addClass('logo-open');
-      allmenuBt.addClass('allmenu-bt-open');
-      
-      // 메인메뉴 오픈 기능
-      header.mouseenter(function () {
-
-        header.addClass('header-open');
-        
-      });
-      // 메인메뉴 닫기 기능
-      header.mouseleave(function () {
-
-        header.removeClass('header-open');
-
-      });
-    }
+  new Waypoint({
+    element: $(".pag-2"),
+    handler: function (direction) {
+      if (direction == "down") {
+        header.addClass("header-active");
+      } else if (direction == "up") {
+        header.removeClass("header-active");
+      }
+    },
+    offset: "10%",
   });
 
-
-
-
-
-  // allmenu 기능
-  let closeBt = $('.allmenu-close-bt');
-  let allmenuWrap = $('.allmenu-wrap');
+  // ======= allmenu 기능 ========
+  let closeBt = $(".allmenu-close-bt");
+  let allmenuWrap = $(".allmenu-wrap");
+  let allmenuBt = $(".allmenu-bt");
   // all menu 오픈기능
   allmenuBt.click(function () {
-    allmenuWrap.addClass('allmenu-wrap-open');
+    allmenuWrap.addClass("allmenu-wrap-open");
   });
   // all menu 닫기기능
   closeBt.click(function () {
-    allmenuWrap.removeClass('allmenu-wrap-open');
+    allmenuWrap.removeClass("allmenu-wrap-open");
   });
 
-  // on/off
-  function MyWaypointOnOff(_fromWhere, _what, _onClass, _offset) {
+  allmenuWrap.addClass("allmenu-wrap-open");
 
-    new Waypoint({
-      element: _fromWhere,
-      handler: function (direction) {
-        if (direction == 'down') {
-          _what.addClass(_onClass);
-        } else if (direction == 'up') {
-          _what.removeClass(_onClass);
-        }
-      },
-      offset: _offset
+  let allMenuDepth1 = $(".allmenu-depth-1");
+  let allMenuDepth1LiA = $(".allmenu-depth-1 > li > a");
+  let allmenuDepth1_active = $(".allmenuDepth_1-active");
+
+  allMenuDepth1.mouseleave(function () {
+    allMenuDepth1.removeClass("allmenuDepth_1-active");
+  });
+
+  $.each(allMenuDepth1LiA, function (index, item) {
+    $(this).mouseenter(function () {
+      allMenuDepth1.addClass("allmenuDepth_1-active");
+      $(this).addClass("active_A_Main");
     });
-
-  }
-
-  MyWaypointOnOff($('.pag-2'), logo, 'logo-open', '10%'); // logo
-  MyWaypointOnOff($('.pag-2'), allmenuBt, 'allmenu-bt-open', '10%'); // allmenuBt
-  MyWaypointOnOff($('.pag-2'), mainGnbDepth1_li_a, 'maingnb-depth1_li_a-open', '10%'); // mainGnbDepth1_li_a
-
-
+    $(this).mouseleave(function () {
+      $(this).removeClass("active_A_Main");
+    });
+  });
 
   //  visual-slide 슬라이드
-  let sw_visual = new Swiper('.sw-visual', {
+  let sw_visual = new Swiper(".sw-visual", {
     loop: true,
     speed: 1000,
     autoplay: {
@@ -337,7 +257,7 @@ window.onload = function () {
 
   //pag4 swiper
 
-  let sw_pag4 = new Swiper('.sw-pag4', {
+  let sw_pag4 = new Swiper(".sw-pag4", {
     loop: true,
     slidesPerView: 2,
     spaceBetween: 460,
@@ -351,33 +271,24 @@ window.onload = function () {
     navigation: {
       nextEl: ".sw-pag4-next",
       prevEl: ".sw-pag4-prev",
-    }
+    },
   });
 
-
-
-
-
-
-
   // pag6 swiper
-  let titleArr = ["1", "보도자료", "공지사항"]
+  let titleArr = ["1", "보도자료", "공지사항"];
 
-  let sw_pag6 = new Swiper('.sw-pag6', {
-
+  let sw_pag6 = new Swiper(".sw-pag6", {
     allowTouchMove: false,
     pagination: {
-      el: '.pag6-pg',
+      el: ".pag6-pg",
       clickable: true,
       renderBullet: function (index, className) {
         return `
           <span class="${className}">${titleArr[index + 1]}</span>
         `;
       },
-    }
-
+    },
   });
-
 
   // // gotobox
 
@@ -390,17 +301,4 @@ window.onload = function () {
   // goToBox_A.mouseleave(function(){
   //   $(this).attr('width', 0);
   // });
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
