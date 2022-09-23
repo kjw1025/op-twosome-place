@@ -107,6 +107,11 @@ $(document).ready(function () {
       scrollTo: sectionPos[sectionIndex],
       onComplete: function () {
         scrollIng = false;
+        let tempNum = sectionIndex + 1;
+        if (tempNum < 7) {
+          $(".fix-now-number").text("0" + tempNum);
+          $(".fix-bar").height(tempNum * 20);
+        }
       },
     });
   });
@@ -118,12 +123,12 @@ $(document).ready(function () {
   //   sectionIndex = _index;
 
   // 이동모션
-  gsap.to($("html"), sectionSpeed / 1000, {
-    scrollTo: sectionPos[sectionIndex],
-    onComplete: function () {
-      scrollIng = false;
-    },
-  });
+  // gsap.to($("html"), sectionSpeed / 1000, {
+  //   scrollTo: sectionPos[sectionIndex],
+  //   onComplete: function () {
+  //     scrollIng = true;
+  //   },
+  // });
   // }
   // moveSection(index);
 
