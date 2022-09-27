@@ -3,7 +3,7 @@ $(document).ready(function () {
   let section = $(".wrap > section");
   let footer = $(".footer");
 
-  let sectionSpeed = 500;
+  let sectionSpeed = 700;
   let sectionPos = [];
   let sectionIndex = 0;
   // 연속 휠 막기
@@ -115,22 +115,6 @@ $(document).ready(function () {
       },
     });
   });
-
-  // 섹션 이동 기능
-
-  // function moveSection(_index) {
-  //   // 보여질 section 번호를 저장
-  //   sectionIndex = _index;
-
-  // 이동모션
-  // gsap.to($("html"), sectionSpeed / 1000, {
-  //   scrollTo: sectionPos[sectionIndex],
-  //   onComplete: function () {
-  //     scrollIng = true;
-  //   },
-  // });
-  // }
-  // moveSection(index);
 
   // 새로고침하면 셋팅
   gsap.to($("html"), 0.5, {
